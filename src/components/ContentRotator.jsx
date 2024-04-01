@@ -7,7 +7,6 @@ const ContentRotator = () => {
     "Buyer: There is a drug shortage for X drug, find me another one!",
     "PAPO: Replacements for X drug are Y and Z (+10 more)",
     "Chat: Metoprolol, indications and usage - INDICATIONS AND USAGE Hypertension Metoprolol tartrate tablets, USP are indicated for the treatment of hypertension.",
-    "Ask AI: Can depression affect physical health?",
     "Chat: Acetaminophen, ask doctor - Ask a doctor before use if you have liver disease."
   ];
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
