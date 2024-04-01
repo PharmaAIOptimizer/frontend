@@ -1,7 +1,6 @@
 "use client"
 
 // import { login_user } from '@/services';
-import Head from 'next/head'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +11,6 @@ import Link from 'next/link';
 
 export default function LoginLink() {
   const [formData, setFormData] = useState({ username: "", password: "" });
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +29,6 @@ export default function LoginLink() {
   return (
     <>
       <section className="bg-gray-900 text-center text-indigo-600">
-        {/* <div className="p-6 text-left text-indigo-600">Go back</div> */}
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -58,11 +55,17 @@ export default function LoginLink() {
                   </div>
                   <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                 </div>
-                <button type="submit" className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                {/* <button type="submit" className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button> */}
                 <p className="text-sm font-light text-gray-500 dark:text-white-400">
                   Don’t have an account yet? <Link href="/register" className="font-medium text-indigo-600 hover:underline dark:text-primary-500">Contact Us</Link>
                 </p>
               </form>
+              {/* DEV TEST */}
+              <Link href={"/home"}>
+                <br />
+                <button href={"/home"} className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+              </Link>
+              {/* DEV TEST */}
             </div>
           </div>
         </div>

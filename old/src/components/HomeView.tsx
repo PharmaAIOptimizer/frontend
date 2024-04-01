@@ -10,7 +10,7 @@ interface HomeViewProps {
 const HomeView: FC<HomeViewProps> = ({ children }) => {
   return (
     <div className="relative flex grow flex-col items-center justify-between px-5 py-8 text-white 
-    bg-black sm:rounded-t-[30px] md:rounded-none md:px-6 md:border-l border-secondaryGray">
+    bg-gray-900 sm:rounded-t-[30px] md:rounded-none md:px-6 md:border-l border-secondaryGray">
       <div className="relative flex w-full grow flex-col items-center justify-center gap-4">
         <h2 className="text-center text-xl leading-[1.2] md:text-4xl md:leading-8 font-bold">
           Welcome to PAPO

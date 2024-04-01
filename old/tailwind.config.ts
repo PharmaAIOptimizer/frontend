@@ -13,6 +13,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      spacing: {
+        '68': '17rem',  // Assuming you want to add a 'w-68' class that corresponds to 17rem
+      }
     },
   },
   plugins: [],

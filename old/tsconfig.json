@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/LoginLink.jsx", "src/components/SideBar.jsx", "src/pages/Register.jsx", "src/components/ContentRotator.jsx", "src/components/StreamingContent.jsx", "src/components/LogoNav.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/LoginLink.js", "src/components/SideBar.jsx", "templates/openshop/src/pages/Dashboard.jsx", "templates/openshop/src/pages/Dashboard.jsx"],
   "exclude": ["node_modules"]
 }
