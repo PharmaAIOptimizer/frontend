@@ -19,9 +19,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineDocumentText />
 	},
 	{
-		key: 'starred',
+		key: 'favorited',
 		label: 'Favorited',
-		path: '/',
+		path: '/favorited',
 		icon: <HiOutlineStar />
 	},
 ]
@@ -34,10 +34,48 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 	// 	icon: <HiOutlineCog />
 	// },
 	{
-		key: 'support',
+		key: 'help',
 		label: 'Help & Support',
-		path: '/support',
+		path: '/help',
 		icon: <HiOutlineQuestionMarkCircle />
+	}
+]
+
+export const NO_HISTORY = [
+	{
+		id: '1',
+		generic_name: 'Acetaminophen',
+		ndc_number: '12345678',
+		w1: '33%',
+		w2: '33%',
+		w3: '34%',
+	}
+]
+
+export const SAMPLE_HISTORY = [
+	{
+		id: '1',
+		generic_name: 'Acetaminophen',
+		ndc_number: '12345678',
+		w1: '33%',
+		w2: '33%',
+		w3: '34%',
+	},
+	{
+		id: '2',
+		generic_name: 'Acetaminophen',
+		ndc_number: '12345678',
+		w1: '33%',
+		w2: '33%',
+		w3: '34%',
+	},
+	{
+		id: '3',
+		generic_name: 'Acetaminophen',
+		ndc_number: '12345678',
+		w1: '33%',
+		w2: '33%',
+		w3: '34%',
 	}
 ]
 

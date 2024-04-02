@@ -3,7 +3,8 @@ import Layout from './components/shared/Layout'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import History from './pages/History'
-// import Home from './pages/Home'
+import Favorited from './pages/Favorited'
+import Help from './pages/Help'
 
 function App() {
     return (
@@ -16,10 +17,12 @@ function App() {
                 <Route path="/history" element={<Layout />}>
                     <Route index element={<History />} />
                 </Route>
-                <Route path="/starred" element={<Layout />}>
-                    <Route index element={<History />} />
+                <Route path="/favorited" element={<Layout />}>
+                    <Route index element={<Favorited />} />
                 </Route>
-                {/* <Route path="/register" element={<Register />} /> */}
+                <Route path="/help" element={<Layout />}>
+                    <Route index element={<Help />} />
+                </Route>
             </Routes>
         </Router>
     )
