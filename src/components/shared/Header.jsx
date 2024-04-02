@@ -3,9 +3,20 @@ import { Menu, Popover, Transition } from '@headlessui/react'
 import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
+import Cookies from 'js-cookie'
 
 export default function Header() {
 	const navigate = useNavigate()
+	let token = Cookies.get('token')
+
+	const handleLogout = async (e) => {
+		e.preventDefault();
+		token = ''
+		Cookies.set("token", token); // Example: set cookie to expire in 7 days
+		setTimeout(() => {
+			navigate('/'); // Use navigate to redirect
+		}, 1000);
+	};
 
 	// State variables for each input
 	const [searchTerm, setSearchTerm] = useState('');
@@ -214,7 +225,7 @@ export default function Header() {
 							<Menu.Item>
 								{({ active }) => (
 									<div
-										onClick={() => navigate('/')}
+										onClick={handleLogout}
 										className={classNames(
 											active && 'bg-gray-100',
 											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
