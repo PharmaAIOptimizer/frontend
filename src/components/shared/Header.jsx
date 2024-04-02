@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
@@ -7,16 +7,101 @@ import classNames from 'classnames'
 export default function Header() {
 	const navigate = useNavigate()
 
+	// State variables for each input
+	const [searchTerm, setSearchTerm] = useState('');
+	const [wac, setWac] = useState('');
+	const [gpo, setGpo] = useState('');
+	const [awp, setAwq] = useState('');
+	const [isMultiple, setIsMultiple] = useState(false); // State to track checkbox
+
+
+	// Handlers to update state based on input
+	const handleSearchTermChange = (event) => setSearchTerm(event.target.value);
+	const handleWacChange = (event) => setWac(event.target.value);
+	const handleGpoChange = (event) => setGpo(event.target.value);
+	const handleAwpChange = (event) => setAwq(event.target.value);
+
+	// Function to log the value of each input
+
+	const totalPercentage = parseInt(wac, 10) + parseInt(gpo, 10) + parseInt(awp, 10);
+
+	const logInputValues = () => {
+		console.log(`Search Term: ${searchTerm}`);
+		console.log(`WAC: ${wac}`);
+		console.log(`GPO: ${gpo}`);
+		console.log(`ACQ: ${awp}`);
+		console.log(`Multiple?: ${isMultiple ? 'Yes' : 'No'}`);
+
+		if (totalPercentage === 100) {
+			console.log("The total of WAC, GPO, and ACQ equals 100%.");
+
+			// To-do: Make call to  API with search term, AWP, GPO, WAC, and Session Cookie as parameters
+
+
+		} else {
+			console.error("Error: The total of WAC, GPO, and ACQ must equal 100%.");
+		}
+	};
+
+	// Function to toggle the 'isMultiple' state
+	const handleCheckboxChange = () => {
+		setIsMultiple(!isMultiple);
+	};
+
+
 	return (
 		<div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
-			<div className="relative">
+			<div className="relative flex-grow">
 				<HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
 				<input
 					type="text"
 					placeholder="Search drug (enter NDC number)..."
 					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
+					value={searchTerm}
+					onChange={handleSearchTermChange}
 				/>
+				<input
+					type="text"
+					placeholder="AWP"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					value={awp}
+					onChange={handleAwpChange}
+				/>
+				<input
+					type="text"
+					placeholder="GPO"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					value={gpo}
+					onChange={handleGpoChange}
+				/>
+				<input
+					type="text"
+					placeholder="WAC"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					value={wac}
+					onChange={handleWacChange}
+				/>
+				<input
+					id="multipleCheckbox"
+					type="checkbox"
+					checked={isMultiple}
+					onChange={handleCheckboxChange}
+					className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 ml-2"
+				/>
+				<label htmlFor="multipleCheckbox" className="ml-2 text-sm font-medium text-gray-900">
+					Multiple?
+				</label>
+				{/* Button to log the input values */}
+				<button
+					onClick={logInputValues}
+					className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+				>
+					Search
+				</button>
 			</div>
+
+			{/* Right side of the menu */}
+
 			<div className="flex items-center gap-2 mr-2">
 				<Popover className="relative">
 					{({ open }) => (
@@ -86,7 +171,7 @@ export default function Header() {
 								className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
 								style={{ backgroundImage: 'url("https://source.unsplash.com/100x100?face")' }}
 							>
-								<span className="sr-only">Marc Backes</span>
+								<span className="sr-only">Taha Ababou</span>
 							</div>
 						</Menu.Button>
 					</div>
@@ -100,7 +185,7 @@ export default function Header() {
 						leaveTo="transform opacity-0 scale-95"
 					>
 						<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-							<Menu.Item>
+							{/* <Menu.Item>
 								{({ active }) => (
 									<div
 										onClick={() => navigate('/profile')}
@@ -125,7 +210,7 @@ export default function Header() {
 										Settings
 									</div>
 								)}
-							</Menu.Item>
+							</Menu.Item> */}
 							<Menu.Item>
 								{({ active }) => (
 									<div
