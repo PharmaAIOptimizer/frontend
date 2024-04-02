@@ -57,8 +57,6 @@ export default function RecentOrders({ data }) {
 			<div className='text-right font-bold text-green-800'>
 				<button>Save results</button></div>
 
-			{/* <div>{drugData}</div> */}
-
 			<div className="border-x border-gray-200 rounded-sm mt-3">
         <table className="w-full text-gray-700">
           <thead>

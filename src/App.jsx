@@ -7,6 +7,7 @@ import Favorited from './pages/Favorited'
 import Help from './pages/Help'
 import { DrugProvider } from './services/providers/DrugContext'
 import { SearchProvider } from './services/providers/SearchContext'
+import HistoryResults from './pages/HistoryResults'
 
 function App() {
     return (
@@ -20,6 +21,9 @@ function App() {
                         </Route>
                         <Route path="/history" element={<Layout />}>
                             <Route index element={<History />} />
+                        </Route>
+                        <Route path="/history-results" element={<Layout />}>
+                            <Route index element={<HistoryResults />} />
                         </Route>
                         <Route path="/favorited" element={<Layout />}>
                             <Route index element={<Favorited />} />

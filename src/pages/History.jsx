@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import HistoryTable from '../components/HistoryTable'
-import { SAMPLE_HISTORY } from '../lib/constants'
+import { NO_HISTORY, SAMPLE_HISTORY } from '../lib/constants'
 
 export default function History() {
 	const navigate = useNavigate(); // Initialize useNavigate hook

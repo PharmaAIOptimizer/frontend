@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+// import HistoryResults from '../components/HistoryResults'
+import { SAMPLEDATA } from '../lib/constants'
 
 export default function HistoryTable({ data }) {
+
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Showing past searches</strong>
@@ -21,10 +24,11 @@ export default function HistoryTable({ data }) {
 						{data.map((order) => (
 							<tr key={order.id}>
 								<td>
-									<Link to={`#`}>#{order.id}</Link>
+									<Link to={`/history-results`}>#{order.id}</Link>
+
 								</td>
 								<td>
-									<Link to={`#`}>{order.ndc_number}</Link>
+									<Link to={`/history-results`}>{order.ndc_number}</Link>
 								</td>
 								<td>{order.generic_name}</td>
 								<td>{order.w1}</td>
