@@ -12,6 +12,7 @@ export default function LoginLink() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await login_user(formData);
+    console.log(res)
     if (res.session_cookie) {
       toast.success(res.message);
       Cookies.set("token", res.session_cookie, { expires: 1 }); // Example: set cookie to expire in 7 days

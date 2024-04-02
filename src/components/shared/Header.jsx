@@ -4,18 +4,24 @@ import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import Cookies from 'js-cookie'
+import { replace_drug } from '../../services/api/drugs'
+import { useDrug } from '../../services/providers/DrugContext'
+import { useSearch } from '../../services/providers/SearchContext'
+
 
 export default function Header() {
-	// const navigate = useNavigate()
-	// let token = Cookies.get('token')
+	const { drugData, updateDrugData } = useDrug();
+	const { searchData, updateSearchData } = useSearch();
+	const navigate = useNavigate()
+	let token = Cookies.get('token')
 
 	const handleLogout = async (e) => {
 		e.preventDefault();
-		// token = ''
-		// Cookies.set("token", token); // Example: set cookie to expire in 7 days
-		// setTimeout(() => {
-		// 	navigate('/'); // Use navigate to redirect
-		// }, 1000);
+		token = ''
+		Cookies.set("token", token); // Example: set cookie to expire in 7 days
+		setTimeout(() => {
+			navigate('/'); // Use navigate to redirect
+		}, 1000);
 	};
 
 	// State variables for each input
@@ -24,7 +30,6 @@ export default function Header() {
 	const [gpo, setGpo] = useState('');
 	const [awp, setAwq] = useState('');
 	const [isMultiple, setIsMultiple] = useState(false); // State to track checkbox
-
 
 	// Handlers to update state based on input
 	const handleSearchTermChange = (event) => setSearchTerm(event.target.value);
@@ -43,6 +48,8 @@ export default function Header() {
 		console.log(`ACQ: ${awp}`);
 		console.log(`Multiple?: ${isMultiple ? 'Yes' : 'No'}`);
 
+		updateSearchData(searchTerm);
+
 		if (totalPercentage === 100) {
 			console.log("The total of WAC, GPO, and ACQ equals 100%.");
 
@@ -54,11 +61,27 @@ export default function Header() {
 		}
 	};
 
+	const searchDrug = async (e) => {
+		const drugParams = {
+			session_cookie: token,
+			drugid: searchTerm,
+			isMultiple: isMultiple ? 1 : 0,
+			w1: wac,
+			w2: gpo,
+			w3: awp,
+		};
+
+
+		// e.preventDefault();
+		const res = await replace_drug(drugParams);
+		console.log('RESULTS: ', res)
+		updateDrugData(res)
+	};
+
 	// Function to toggle the 'isMultiple' state
 	const handleCheckboxChange = () => {
 		setIsMultiple(!isMultiple);
 	};
-
 
 	return (
 		<div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
@@ -72,25 +95,34 @@ export default function Header() {
 					onChange={handleSearchTermChange}
 				/>
 				<input
-					type="text"
+					type="number"
 					placeholder="340B"
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4.3rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[5rem] h-10 pl-4 pr-4 rounded-sm ml-2"
 					value={awp}
 					onChange={handleAwpChange}
+					min={0}
+					max={100}
+					step={1}
 				/>
 				<input
-					type="text"
+					type="number"
 					placeholder="GPO"
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[5rem] h-10 pl-4 pr-4 rounded-sm ml-2"
 					value={gpo}
 					onChange={handleGpoChange}
+					min={0}
+					max={100}
+					step={1}
 				/>
 				<input
-					type="text"
+					type="number"
 					placeholder="WAC"
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[5rem] h-10 pl-4 pr-4 rounded-sm ml-2"
 					value={wac}
 					onChange={handleWacChange}
+					min={0}
+					max={100}
+					step={1}
 				/>
 				<input
 					id="multipleCheckbox"
@@ -104,7 +136,7 @@ export default function Header() {
 				</label>
 				{/* Button to log the input values */}
 				<button
-					onClick={logInputValues}
+					onClick={searchDrug}
 					className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 				>
 					Search

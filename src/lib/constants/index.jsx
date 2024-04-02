@@ -79,6 +79,77 @@ export const SAMPLE_HISTORY = [
 	}
 ]
 
+// export const STRUCTURE = [
+// 	{
+// 		itemNumber: '',
+// 		ndcNumber: '',
+// 		sizeQty: '',
+// 		retailPackQuantity: '',
+// 		awpPrice: '',
+// 		acquisitionPrice: '',
+// 		retailPrice: '',
+// 		wacPrice: '',
+// 		contractFlag: '',
+// 		genericName: '',
+// 		form: '',
+// 		size: '',
+// 		trueSimilarity: '',
+// 		percentage: '',
+// 		mcg: '',
+// 		m: '',
+// 		iu: '',
+// 		meq: '',
+// 		un: '',
+// 		hr: '',
+// 		mmol: '',
+// 		bp: '',
+// 		cal: '',
+// 		usp: '',
+// 		mu: '',
+// 		totalMg: '',
+// 		totalMl: '',
+// 		totalMm: '',
+// 		basicForm: '',
+// 		averagePrice: '',
+// 	}
+// ]
+
+const restructureApiResponse = (apiResponse) => {
+	return apiResponse.map(item => ({
+	  itemNumber: item["Item Number – 8 digit"] || '',
+	  ndcNumber: item["NDC Number"] || '',
+	  sizeQty: item["Size Qty"].trim() || '',
+	  retailPackQuantity: item["Retail Pack Quantity"] || '',
+	  awpPrice: item["AWP Price"] || '',
+	  acquisitionPrice: item["Acquisition Price"] || '',
+	  retailPrice: item["Retail Price"] || '',
+	  wacPrice: item["WAC Price"] || '',
+	  contractFlag: item["Contract Flag"] || '',
+	  genericName: item["Generic Name"] || '',
+	  form: item["Form"] || '',
+	  size: item["Size"] || '',
+	  trueSimilarity: item["True Similarity"] || '',
+	  percentage: item["%"] || '',
+	  mcg: item["MCG"] || '',
+	  m: item["M"] || '',
+	  iu: item["IU"] || '',
+	  meq: item["MEQ"] || '',
+	  un: item["UN"] || '',
+	  hr: item["HR"] || '',
+	  mmol: item["MMOL"] || '',
+	  bp: item["BP"] || '',
+	  cal: item["CAL"] || '',
+	  usp: item["USP"] || '',
+	  mu: item["MU"] || '',
+	  totalMg: item["Total_MG"] || '',
+	  totalMl: item["Total_ML"] || '',
+	  totalMm: item["Total_MM"] || '',
+	  basicForm: item["Basic Form"] || '',
+	  averagePrice: item["Average Price"] || ''
+	}));
+  };
+
+
 export const NO_DATA = [
 	{
 		item_number: '',
