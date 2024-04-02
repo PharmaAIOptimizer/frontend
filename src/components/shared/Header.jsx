@@ -62,8 +62,8 @@ export default function Header() {
 				/>
 				<input
 					type="text"
-					placeholder="AWP"
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					placeholder="340B"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[4.3rem] h-10 pl-4 pr-4 rounded-sm ml-2"
 					value={awp}
 					onChange={handleAwpChange}
 				/>
