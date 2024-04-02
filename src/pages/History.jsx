@@ -1,12 +1,13 @@
 import React from 'react'
 import RecentOrders from '../components/RecentOrders'
-import { NO_DATA } from '../lib/constants'
+import { SAMPLEDATA } from '../lib/constants'
 
-export default function Dashboard() {
+
+export default function History() {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-row gap-4 w-full h-screen">
-				<RecentOrders data={NO_DATA} />
+				<RecentOrders data={SAMPLEDATA} />
 			</div>
 		</div>
 	)
