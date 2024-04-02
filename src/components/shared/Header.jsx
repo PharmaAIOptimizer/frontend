@@ -70,10 +70,30 @@ export default function Header() {
 			w2: gpo,
 			w3: awp,
 		};
+		
+		// const drugParams2 = {
+		// 	session_cookie: token,
+		// 	drugid: 10083468,
+		// 	isMultiple: 1,
+		// 	w1: 0.3,
+		// 	w2: 0.3,
+		// 	w3: 0.4,
+		// };
 
 
 		// e.preventDefault();
-		const res = await replace_drug(drugParams);
+		// const res = await replace_drug(drugParams);
+
+		let res;
+
+		if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3){
+			console.log('NO INPUT')
+			// res = await replace_drug(drugParams2);
+		} else {
+			console.log('YES INPUT')
+			res = await replace_drug(drugParams);
+		}
+
 		console.log('RESULTS: ', res)
 		updateDrugData(res)
 	};

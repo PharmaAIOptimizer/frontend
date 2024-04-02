@@ -15,7 +15,7 @@ export default function LoginLink() {
     console.log(res)
     if (res.session_cookie) {
       toast.success(res.message);
-      Cookies.set("token", res.session_cookie, { expires: 1 }); // Example: set cookie to expire in 7 days
+      Cookies.set("token", res.session_cookie, { expires: 1 }); // Example: set cookie to expire in 1 days
       setTimeout(() => {
         navigate('/home'); // Use navigate to redirect
       }, 1000);
