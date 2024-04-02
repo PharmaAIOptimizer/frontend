@@ -6,16 +6,16 @@ import classNames from 'classnames'
 import Cookies from 'js-cookie'
 
 export default function Header() {
-	const navigate = useNavigate()
-	let token = Cookies.get('token')
+	// const navigate = useNavigate()
+	// let token = Cookies.get('token')
 
 	const handleLogout = async (e) => {
 		e.preventDefault();
-		token = ''
-		Cookies.set("token", token); // Example: set cookie to expire in 7 days
-		setTimeout(() => {
-			navigate('/'); // Use navigate to redirect
-		}, 1000);
+		// token = ''
+		// Cookies.set("token", token); // Example: set cookie to expire in 7 days
+		// setTimeout(() => {
+		// 	navigate('/'); // Use navigate to redirect
+		// }, 1000);
 	};
 
 	// State variables for each input
