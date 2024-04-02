@@ -1,9 +1,8 @@
 import {
 	HiOutlineViewGrid,
-	HiOutlineUsers,
 	HiOutlineDocumentText,
 	HiOutlineQuestionMarkCircle,
-	HiOutlineCog,
+	HiOutlineStar,
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -21,9 +20,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'starred',
-		label: 'Starred',
+		label: 'Favorited',
 		path: '/',
-		icon: <HiOutlineUsers />
+		icon: <HiOutlineStar />
 	},
 ]
 
