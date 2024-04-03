@@ -17,8 +17,7 @@ export const register_user = async (formData) => {
 
 export const login_user = async (formData) => {
     try {
-        // const res = await fetch('http://44.211.204.255/session/login', {
-        const res = await fetch('https://127.0.0.1:8000/session/login', {
+        const res = await fetch('https://44.211.204.255/session/login', {
             headers: {
                 'Content-Type': 'application/json',
             },
