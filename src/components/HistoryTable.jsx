@@ -13,7 +13,7 @@ export default function HistoryTable({ data }) {
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Drug NDC Number</th>
+							<th>Drug Item Number</th>
 							<th>Drug Generic Name</th>
 							<th>340B</th>
 							<th>GPO</th>
