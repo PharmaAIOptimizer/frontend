@@ -6,9 +6,8 @@ import classNames from 'classnames'
 import Cookies from 'js-cookie'
 import { replace_drug } from '../../services/api/drugs'
 import { useDrug } from '../../services/providers/DrugContext'
-import { useSearch } from '../../services/providers/SearchContext'
 
-export default function Header() {
+export default function HeaderHistory() {
 	const { updateDrugData } = useDrug();
 	const navigate = useNavigate()
 	let token = Cookies.get('token')
@@ -24,7 +23,6 @@ export default function Header() {
 
 	// State variables for each input
 	const [searchTerm, setSearchTerm] = useState('');
-	const { updateSearchData } = useSearch();
 	const [wac, setWac] = useState('');
 	const [gpo, setGpo] = useState('');
 	const [awp, setAwq] = useState('');
@@ -52,11 +50,10 @@ export default function Header() {
 			console.log('NO INPUT')
 		} else {
 			console.log('YES INPUT')
-			res = await replace_drug(drugParams);
+			// res = await replace_drug(drugParams);
 		}
 
 		updateDrugData(res)
-		updateSearchData(searchTerm)
 	};
 
 	// Function to toggle the 'isMultiple' state
@@ -70,12 +67,12 @@ export default function Header() {
 				<HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
 				<input
 					type="text"
-					placeholder="Search Drug (Enter Item Number)..."
+					placeholder="Search Past History"
 					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
 					value={searchTerm}
 					onChange={handleSearchTermChange}
 				/>
-				<input
+				{/* <input
 					type="number"
 					placeholder="340B"
 					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[6rem] h-10 pl-4 pr-4 rounded-sm ml-2"
@@ -114,7 +111,7 @@ export default function Header() {
 				/>
 				<label htmlFor="multipleCheckbox" className="ml-2 text-sm font-medium text-gray-900">
 					Multiple?
-				</label>
+				</label> */}
 				{/* Button to log the input values */}
 				<button
 					onClick={searchDrug}

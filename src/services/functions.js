@@ -49,3 +49,15 @@ export const restructureApiResponse = (apiResponse) => {
         averagePrice: item["Average Price"] || ''
     }));
 };
+
+export const restructureHistoryApiResponse = (apiResponse) => {
+    return apiResponse.map(item => ({
+        itemNumber: item[0],
+        w1: item[1],
+        w2: item[2],
+        w3: item[3],
+        isMultiple: item[4] ? 'Yes' : 'No',
+        timestamp: item[5],
+        results: item[6]
+    }));
+}

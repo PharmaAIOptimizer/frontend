@@ -1,0 +1,80 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useHistory } from '../../services/providers/HistoryContext';
+import { useSearch } from '../../services/providers/SearchContext';
+
+export default function HistoryTable({ data }) {
+	const { updateHistoryData } = useHistory();
+	const { updateSearchData } = useSearch();
+	const [currentPage, setCurrentPage] = useState(1);
+	const resultsPerPage = 15;
+
+	// Reverse the data array before calculating the slice for the current page
+	const reversedData = [...data].reverse(); // Create a copy and reverse it to avoid mutating the original data prop
+
+	// Calculate the current data slice
+	const indexOfLastResult = currentPage * resultsPerPage;
+	const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+	const currentData = reversedData.slice(indexOfFirstResult, indexOfLastResult);
+
+	// Change page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+	// Calculate the total number of pages
+	const pageNumbers = [];
+	for (let i = 1; i <= Math.ceil(reversedData.length / resultsPerPage); i++) {
+		pageNumbers.push(i);
+	}
+
+	return (
+		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
+			<strong className="text-gray-700 font-medium">Showing past searches</strong>
+			<div className="border-x border-gray-200 rounded-sm mt-3">
+				<table className="w-full text-gray-700">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Drug Item Number</th>
+							<th>Multiple?</th>
+							<th>340B</th>
+							<th>GPO</th>
+							<th>WAC</th>
+						</tr>
+					</thead>
+					<tbody>
+						{currentData.map((order, index) => (
+							<tr key={index}>
+								{updateHistoryData(order.results)}
+								{updateSearchData(order.itemNumber)}
+								<td>
+									<Link to={`/history-results`}>#</Link>
+								</td>
+								<td>
+									<Link to={`/history-results`}>{order.itemNumber}</Link>
+								</td>
+								<td>{order.isMultiple}</td>
+								<td>{order.w1}</td>
+								<td>{order.w2}</td>
+								<td>{order.w3}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<nav className="mt-7">
+				<ul className="flex justify-center">
+					{pageNumbers.map(number => (
+						<li key={number} className="mx-1">
+							<button
+								onClick={() => paginate(number)}
+								className={`px-4 py-2 text-sm font-medium rounded hover:bg-blue-700 ${currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+							>
+								{number}
+							</button>
+						</li>
+					))}
+				</ul>
+			</nav>
+		</div>
+	);
+}

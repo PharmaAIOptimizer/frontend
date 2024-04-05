@@ -5,10 +5,10 @@ export const get_history = async (params) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify(params),
         });
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('Error in replacing drugs (service) => ', error);

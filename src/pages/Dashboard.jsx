@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import RecentOrders from '../components/RecentOrders'
-import { NO_DATA, SAMPLEDATA, STRUCTURE } from '../lib/constants'
+import { NO_DATA } from '../lib/constants'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import { useDrug } from '../services/providers/DrugContext';
@@ -15,7 +15,7 @@ export default function Dashboard() {
 		if (!token) {
 			navigate('/')
 		}
-	}, [])
+	})
 
 	const formattedDrugData = formatJSON(drugData)
 

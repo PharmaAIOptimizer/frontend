@@ -9,6 +9,7 @@ import { DrugProvider } from './services/providers/DrugContext'
 import { SearchProvider } from './services/providers/SearchContext'
 import HistoryResults from './pages/HistoryResults'
 import { HistoryProvider } from './services/providers/HistoryContext'
+import LayoutHistory from './components/history/LayoutHistory'
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                             <Route path="/home" element={<Layout />}>
                                 <Route index element={<Dashboard />} />
                             </Route>
-                            <Route path="/history" element={<Layout />}>
+                            <Route path="/history" element={<LayoutHistory />}>
                                 <Route index element={<History />} />
                             </Route>
                             <Route path="/history-results" element={<Layout />}>
