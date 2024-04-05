@@ -1,6 +1,5 @@
 export const replace_drug = async (params) => {
     try {
-        console.log('PARAMS: ', params)
         const res = await fetch('http://100.26.146.163/drugs/replacements', {
             headers: {
                 'Content-Type': 'application/json',

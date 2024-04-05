@@ -1,6 +1,5 @@
 export const get_history = async (params) => {
     try {
-        console.log('PARAMS: ', params)
         const res = await fetch('http://100.26.146.163/history/get', {
             headers: {
                 'Content-Type': 'application/json',
@@ -19,7 +18,6 @@ export const get_history = async (params) => {
 
 export const get_favorites = async (params) => {
     try {
-        console.log('PARAMS: ', params)
         const res = await fetch('http://100.26.146.163/history/get_favorites', {
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +36,6 @@ export const get_favorites = async (params) => {
 
 export const add_favorites = async (params) => {
     try {
-        console.log('PARAMS: ', params)
         const res = await fetch('http://100.26.146.163/history/add_to_favorites', {
             headers: {
                 'Content-Type': 'application/json',
@@ -57,7 +54,6 @@ export const add_favorites = async (params) => {
 
 export const remove_favorites = async (params) => {
     try {
-        console.log('PARAMS: ', params)
         const res = await fetch('http://100.26.146.163/history/remove_from_favorites', {
             headers: {
                 'Content-Type': 'application/json',

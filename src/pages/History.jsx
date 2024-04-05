@@ -5,6 +5,12 @@ import HistoryTable from '../components/HistoryTable'
 import { NO_HISTORY, SAMPLE_HISTORY, SAMPLE_HISTORYAPI } from '../lib/constants'
 import { useHistory } from '../services/providers/HistoryContext';
 
+export const restructureApiResponse2 = (apiResponse) => {
+	return apiResponse.map(item => ({
+		results: item[6]
+	}));
+}
+
 export default function History() {
 	const navigate = useNavigate(); // Initialize useNavigate hook
 	const token = Cookies.get('token')
@@ -28,21 +34,10 @@ export default function History() {
 			results: item[6]
 		}));
 	}
-
-	const APIDATA = restructureApiResponse(SAMPLE_HISTORYAPI);
-	console.log('API DATA NUMBER RESPONSE: ', APIDATA.results) //Gives me undefined or "", why and how to fix it?
-
-	let HISTORYRESULTS;
-
-	APIDATA.forEach((item, index) => {
-		
-		HISTORYRESULTS.push(item.results)
-		// console.log(`API DATA NUMBER RESPONSE for item ${index}: `, item.results);
-	  });
-
-	  console.log('History Results: ', HISTORYRESULTS)
 	
-	  updateHistoryData(APIDATA.results)
+	const APIDATA = restructureApiResponse(SAMPLE_HISTORYAPI);
+	
+	// updateHistoryData(APIDATA)
 
 	return (
 		<div className="flex flex-col gap-4">

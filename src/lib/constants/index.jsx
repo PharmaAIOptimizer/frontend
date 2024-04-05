@@ -85,7 +85,7 @@ export const SAMPLE_HISTORYAPI = [
         0.4,
         0.3,
         0.3,
-        false,
+        true,
         1712080554,
         [
             {

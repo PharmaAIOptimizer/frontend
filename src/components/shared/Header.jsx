@@ -6,12 +6,9 @@ import classNames from 'classnames'
 import Cookies from 'js-cookie'
 import { replace_drug } from '../../services/api/drugs'
 import { useDrug } from '../../services/providers/DrugContext'
-import { useSearch } from '../../services/providers/SearchContext'
-
 
 export default function Header() {
-	const { drugData, updateDrugData } = useDrug();
-	const { searchData, updateSearchData } = useSearch();
+	const { updateDrugData } = useDrug();
 	const navigate = useNavigate()
 	let token = Cookies.get('token')
 
@@ -37,30 +34,6 @@ export default function Header() {
 	const handleGpoChange = (event) => setGpo(event.target.value);
 	const handleAwpChange = (event) => setAwq(event.target.value);
 
-	// Function to log the value of each input
-
-	const totalPercentage = parseInt(wac, 10) + parseInt(gpo, 10) + parseInt(awp, 10);
-
-	const logInputValues = () => {
-		console.log(`Search Term: ${searchTerm}`);
-		console.log(`WAC: ${wac}`);
-		console.log(`GPO: ${gpo}`);
-		console.log(`ACQ: ${awp}`);
-		console.log(`Multiple?: ${isMultiple ? 'Yes' : 'No'}`);
-
-		updateSearchData(searchTerm);
-
-		if (totalPercentage === 100) {
-			console.log("The total of WAC, GPO, and ACQ equals 100%.");
-
-			// To-do: Make call to  API with search term, AWP, GPO, WAC, and Session Cookie as parameters
-
-
-		} else {
-			console.error("Error: The total of WAC, GPO, and ACQ must equal 100%.");
-		}
-	};
-
 	const searchDrug = async (e) => {
 		const drugParams = {
 			session_cookie: token,
@@ -75,13 +48,11 @@ export default function Header() {
 
 		if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3){
 			console.log('NO INPUT')
-			// res = await replace_drug(drugParams2);
 		} else {
 			console.log('YES INPUT')
 			res = await replace_drug(drugParams);
 		}
 
-		console.log('RESULTS: ', res)
 		updateDrugData(res)
 	};
 
@@ -96,7 +67,7 @@ export default function Header() {
 				<HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
 				<input
 					type="text"
-					placeholder="Search drug (enter NDC number)..."
+					placeholder="Search Drug (Enter Item Number)..."
 					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
 					value={searchTerm}
 					onChange={handleSearchTermChange}
@@ -104,7 +75,7 @@ export default function Header() {
 				<input
 					type="number"
 					placeholder="340B"
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[5rem] h-10 pl-4 pr-4 rounded-sm ml-2"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[6rem] h-10 pl-4 pr-4 rounded-sm ml-2"
 					value={awp}
 					onChange={handleAwpChange}
 					min={0}
