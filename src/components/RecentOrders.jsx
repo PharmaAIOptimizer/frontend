@@ -4,6 +4,26 @@ import { useSearch } from '../services/providers/SearchContext';
 
 export default function RecentOrders({ data }) {
 	const { searchData } = useSearch();
+	const [currentPage, setCurrentPage] = useState(1);
+	const resultsPerPage = 10;
+
+	// Reverse the data array before calculating the slice for the current page
+	// const reversedData = [...data].reverse(); // Create a copy and reverse it to avoid mutating the original data prop
+
+	// Calculate the current data slice
+	const indexOfLastResult = currentPage * resultsPerPage;
+	const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+	const currentData = data.slice(indexOfFirstResult, indexOfLastResult);
+
+	// Change page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+	// Calculate the total number of pages
+	const pageNumbers = [];
+	for (let i = 1; i <= Math.ceil(data.length / resultsPerPage); i++) {
+		pageNumbers.push(i);
+	}
+
 
 	// Determine columns to hide based on empty values across all rows
 	const columnsToHide = data.reduce((acc, order) => {
@@ -64,7 +84,7 @@ export default function RecentOrders({ data }) {
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((order, index) => (
+						{currentData.map((order, index) => (
 							<tr key={index}>
 								{headers.map(header =>
 									!columnsToHide.has(header.prop) && <td key={`${header.prop}-${index}`}>{order[header.prop]}</td>
@@ -74,6 +94,20 @@ export default function RecentOrders({ data }) {
 					</tbody>
 				</table>
 			</div>
+			<nav className="mt-7">
+				<ul className="flex justify-center">
+					{pageNumbers.map(number => (
+						<li key={number} className="mx-1">
+							<button
+								onClick={() => paginate(number)}
+								className={`px-4 py-2 text-sm font-medium rounded hover:bg-blue-700 ${currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+							>
+								{number}
+							</button>
+						</li>
+					))}
+				</ul>
+			</nav>
 		</div>
 	)
 }

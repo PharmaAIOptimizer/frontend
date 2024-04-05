@@ -9,20 +9,19 @@ export default function HistoryTable({ data }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 15;
 
-	// Reverse the data array before calculating the slice for the current page
-	const reversedData = [...data].reverse(); // Create a copy and reverse it to avoid mutating the original data prop
+	// data = [...data].reverse() // reversed to display most recent to oldest data
 
 	// Calculate the current data slice
 	const indexOfLastResult = currentPage * resultsPerPage;
 	const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-	const currentData = reversedData.slice(indexOfFirstResult, indexOfLastResult);
+	const currentData = data.slice(indexOfFirstResult, indexOfLastResult);
 
 	// Change page
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	// Calculate the total number of pages
 	const pageNumbers = [];
-	for (let i = 1; i <= Math.ceil(reversedData.length / resultsPerPage); i++) {
+	for (let i = 1; i <= Math.ceil(data.length / resultsPerPage); i++) {
 		pageNumbers.push(i);
 	}
 
@@ -53,9 +52,9 @@ export default function HistoryTable({ data }) {
 									<Link to={`/history-results`}>{order.itemNumber}</Link>
 								</td>
 								<td>{order.isMultiple}</td>
-								<td>{order.w1}</td>
-								<td>{order.w2}</td>
 								<td>{order.w3}</td>
+								<td>{order.w2}</td>
+								<td>{order.w1}</td>
 							</tr>
 						))}
 					</tbody>

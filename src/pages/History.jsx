@@ -15,14 +15,13 @@ export default function History() {
         } else {
             fetchAndProcessHistory();
         }
-    }, [token, navigate]);
+    });
 
     async function fetchAndProcessHistory() {
         try {
             const historyParams = { session_cookie: token };
             const apiResponse = await get_history(historyParams);
             const processedData = historyResultsAPI(apiResponse);
-            console.log('Processed API Data:', processedData);
             setHistoryData(processedData);
         } catch (error) {
             console.error("Error fetching and processing history:", error);
@@ -32,9 +31,6 @@ export default function History() {
 
     const historyResultsAPI = (apiResponse) => {
         try {
-            console.log(Array.isArray(apiResponse)); // Should log true if apiResponse is an array
-            console.log('API Responseee:', apiResponse);
-
             return apiResponse.map(item => ({
                 itemNumber: item[0],
                 w1: item[1],
@@ -45,9 +41,7 @@ export default function History() {
                 results: item[6]
             }));
         } catch (error) {
-            console.log("Error in mapping at: ", apiResponse);
             console.error("An error occurred while processing the API response:", error);
-            // Return an empty array or error object based on your error handling strategy
             return [];
         }
     };

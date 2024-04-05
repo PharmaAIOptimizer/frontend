@@ -55,7 +55,6 @@ export const NO_HISTORY = [
 export const SAMPLE_HISTORY = [
 	{
 		id: '1',
-		generic_name: 'Acetaminophen',
 		ndc_number: '12345678',
 		w1: '33%',
 		w2: '33%',
@@ -63,7 +62,6 @@ export const SAMPLE_HISTORY = [
 	},
 	{
 		id: '2',
-		generic_name: 'Acetaminophen',
 		ndc_number: '12345678',
 		w1: '33%',
 		w2: '33%',
@@ -71,7 +69,6 @@ export const SAMPLE_HISTORY = [
 	},
 	{
 		id: '3',
-		generic_name: 'Acetaminophen',
 		ndc_number: '12345678',
 		w1: '33%',
 		w2: '33%',
