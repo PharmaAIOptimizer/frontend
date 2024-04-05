@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from '../../services/providers/HistoryContext';
 import { useSearch } from '../../services/providers/SearchContext';
 
 export default function HistoryTable({ data }) {
 	const { updateHistoryData, updateFavoriteID } = useHistory();
+	const history = useHistory(); // This is assuming useHistory is from 'react-router-dom'
+
 	const { updateSearchData } = useSearch();
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 15;
@@ -25,6 +27,17 @@ export default function HistoryTable({ data }) {
 		pageNumbers.push(i);
 	}
 
+	const handleRowClick = (order) => {
+        updateHistoryData(order.results);
+        updateSearchData(order.itemNumber);
+        updateFavoriteID(order.id);
+
+        // Redirect to the detailed view
+        // history.push(`/history-results/${order.id}`);
+		<Link to={`/history-results`}></Link>
+    };
+
+
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Showing past searches</strong>
@@ -38,14 +51,17 @@ export default function HistoryTable({ data }) {
 							<th>GPO</th>
 							<th>WAC</th>
 							<th>Multiple?</th>
+							<th style={{ textAlign: 'center', verticalAlign: 'middle' }}>Total Results</th>
 						</tr>
 					</thead>
 					<tbody>
 						{currentData.map((order, index) => (
-							<tr key={index}>
-								{updateHistoryData(order.results)}
-								{updateSearchData(order.itemNumber)}
-								{updateFavoriteID(order.id)}
+							// <tr key={index}>
+								// {updateHistoryData(order.results)}
+								// {updateSearchData(order.itemNumber)}
+								// {updateFavoriteID(order.id)}
+								<tr key={index} onClick={() => handleRowClick(order)}>
+								
 								<td>
 									<Link to={`/history-results`}>#{order.id}</Link>
 								</td>
@@ -56,6 +72,7 @@ export default function HistoryTable({ data }) {
 								<td>{order.w2}</td>
 								<td>{order.w1}</td>
 								<td>{order.isMultiple}</td>
+								<td style={{ textAlign: 'center', verticalAlign: 'middle' }}>{order.results.length}</td>
 							</tr>
 						))}
 					</tbody>
