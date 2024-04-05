@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from '../../services/providers/HistoryContext';
 import { useSearch } from '../../services/providers/SearchContext';
 
 export default function HistoryTable({ data }) {
 	const { updateHistoryData, updateFavoriteID } = useHistory();
-	const history = useHistory(); // This is assuming useHistory is from 'react-router-dom'
-
 	const { updateSearchData } = useSearch();
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 15;
@@ -28,14 +26,13 @@ export default function HistoryTable({ data }) {
 	}
 
 	const handleRowClick = (order) => {
-        updateHistoryData(order.results);
-        updateSearchData(order.itemNumber);
-        updateFavoriteID(order.id);
+		updateHistoryData(order.results);
+		updateSearchData(order.itemNumber);
+		updateFavoriteID(order.id);
 
-        // Redirect to the detailed view
-        // history.push(`/history-results/${order.id}`);
+		// Redirect to the detailed view
 		<Link to={`/history-results`}></Link>
-    };
+	};
 
 
 	return (
@@ -56,12 +53,7 @@ export default function HistoryTable({ data }) {
 					</thead>
 					<tbody>
 						{currentData.map((order, index) => (
-							// <tr key={index}>
-								// {updateHistoryData(order.results)}
-								// {updateSearchData(order.itemNumber)}
-								// {updateFavoriteID(order.id)}
-								<tr key={index} onClick={() => handleRowClick(order)}>
-								
+							<tr key={index} onClick={() => handleRowClick(order)}>
 								<td>
 									<Link to={`/history-results`}>#{order.id}</Link>
 								</td>
