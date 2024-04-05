@@ -4,10 +4,8 @@ import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import Cookies from 'js-cookie'
-import { useDrug } from '../../services/providers/DrugContext'
 
 export default function HeaderFavorited() {
-	const { updateDrugData } = useDrug();
 	const navigate = useNavigate()
 	let token = Cookies.get('token')
 
@@ -22,35 +20,31 @@ export default function HeaderFavorited() {
 
 	// State variables for each input
 	const [searchTerm, setSearchTerm] = useState('');
-	const [wac, setWac] = useState('');
-	const [gpo, setGpo] = useState('');
-	const [awp, setAwq] = useState('');
-	const [isMultiple, setIsMultiple] = useState(false); // State to track checkbox
 
 	// Handlers to update state based on input
 	const handleSearchTermChange = (event) => setSearchTerm(event.target.value);
 
-	const searchDrug = async (e) => {
-		const drugParams = {
-			session_cookie: token,
-			drugid: searchTerm,
-			isMultiple: isMultiple ? 1 : 0,
-			w1: wac,
-			w2: gpo,
-			w3: awp,
-		};
+	// const searchDrug = async (e) => {
+	// 	const drugParams = {
+	// 		session_cookie: token,
+	// 		drugid: searchTerm,
+	// 		isMultiple: isMultiple ? 1 : 0,
+	// 		w1: wac,
+	// 		w2: gpo,
+	// 		w3: awp,
+	// 	};
 		
-		let res;
+	// 	let res;
 
-		if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3){
-			console.log('NO INPUT')
-		} else {
-			console.log('YES INPUT')
-			// res = await replace_drug(drugParams);
-		}
+	// 	if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3){
+	// 		console.log('NO INPUT')
+	// 	} else {
+	// 		console.log('YES INPUT')
+	// 		// res = await replace_drug(drugParams);
+	// 	}
 
-		updateDrugData(res)
-	};
+	// 	updateDrugData(res)
+	// };
 
 	return (
 		<div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
@@ -65,7 +59,8 @@ export default function HeaderFavorited() {
 				/>
 				{/* Button to log the input values */}
 				<button
-					onClick={searchDrug}
+					// onClick={searchDrug}
+					onClick={`#`}
 					className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 				>
 					Search
