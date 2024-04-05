@@ -12,7 +12,7 @@ export const DrugProvider = ({ children }) => {
   const updateDrugData = (data) => {
     setDrugData(data);
   };
-
+  
   return (
     <DrugContext.Provider value={{ drugData, updateDrugData }}>
       {children}

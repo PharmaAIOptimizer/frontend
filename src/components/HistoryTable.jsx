@@ -14,7 +14,7 @@ export default function HistoryTable({ data }) {
 						<tr>
 							<th>ID</th>
 							<th>Drug Item Number</th>
-							<th>Drug Generic Name</th>
+							<th>Multiple?</th>
 							<th>340B</th>
 							<th>GPO</th>
 							<th>WAC</th>
@@ -24,13 +24,13 @@ export default function HistoryTable({ data }) {
 						{data.map((order) => (
 							<tr key={order.id}>
 								<td>
-									<Link to={`/history-results`}>#{order.id}</Link>
+									<Link to={`/history-results`}>#</Link>
 
 								</td>
 								<td>
-									<Link to={`/history-results`}>{order.ndc_number}</Link>
+									<Link to={`/history-results`}>{order.itemNumber}</Link>
 								</td>
-								<td>{order.generic_name}</td>
+								<td>{order.isMultiple}</td>
 								<td>{order.w1}</td>
 								<td>{order.w2}</td>
 								<td>{order.w3}</td>
