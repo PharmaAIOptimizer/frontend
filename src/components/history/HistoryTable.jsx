@@ -48,7 +48,7 @@ export default function HistoryTable({ data }) {
 							<th>GPO</th>
 							<th>WAC</th>
 							<th>Multiple?</th>
-							<th style={{ textAlign: 'center', verticalAlign: 'middle' }}>Total Results</th>
+							<th style={{ textAlign: 'center', verticalAlign: 'middle' }}>Total Replacements</th>
 						</tr>
 					</thead>
 					<tbody>
