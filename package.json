@@ -21,7 +21,8 @@
         "react-toastify": "^10.0.5",
         "react-typed": "^2.0.12",
         "reactstrap": "^9.2.2",
-        "recharts": "^2.12.3"
+        "recharts": "^2.12.3",
+        "typescript": "^5.4.4"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.202",
