@@ -4,7 +4,7 @@ import { useHistory } from '../../services/providers/HistoryContext';
 import { useSearch } from '../../services/providers/SearchContext';
 
 export default function HistoryTable({ data }) {
-	const { updateHistoryData } = useHistory();
+	const { updateHistoryData, updateFavoriteID } = useHistory();
 	const { updateSearchData } = useSearch();
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 15;
@@ -34,10 +34,10 @@ export default function HistoryTable({ data }) {
 						<tr>
 							<th>ID</th>
 							<th>Drug Item Number</th>
-							<th>Multiple?</th>
 							<th>340B</th>
 							<th>GPO</th>
 							<th>WAC</th>
+							<th>Multiple?</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,16 +45,17 @@ export default function HistoryTable({ data }) {
 							<tr key={index}>
 								{updateHistoryData(order.results)}
 								{updateSearchData(order.itemNumber)}
+								{updateFavoriteID(order.id)}
 								<td>
-									<Link to={`/history-results`}>#</Link>
+									<Link to={`/history-results`}>#{order.id}</Link>
 								</td>
 								<td>
 									<Link to={`/history-results`}>{order.itemNumber}</Link>
 								</td>
-								<td>{order.isMultiple}</td>
 								<td>{order.w3}</td>
 								<td>{order.w2}</td>
 								<td>{order.w1}</td>
+								<td>{order.isMultiple}</td>
 							</tr>
 						))}
 					</tbody>

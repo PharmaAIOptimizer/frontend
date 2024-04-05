@@ -23,7 +23,7 @@ export const get_favorites = async (params) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify(params),
         });
         const data = res.json();

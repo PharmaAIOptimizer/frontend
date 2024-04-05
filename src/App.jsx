@@ -10,6 +10,8 @@ import { SearchProvider } from './services/providers/SearchContext'
 import HistoryResults from './pages/HistoryResults'
 import { HistoryProvider } from './services/providers/HistoryContext'
 import LayoutHistory from './components/history/LayoutHistory'
+import LayoutFavorited from './components/favorited/LayoutFavorited'
+import FavoriteResults from './pages/FavoriteResults'
 
 function App() {
     return (
@@ -25,10 +27,13 @@ function App() {
                             <Route path="/history" element={<LayoutHistory />}>
                                 <Route index element={<History />} />
                             </Route>
-                            <Route path="/history-results" element={<Layout />}>
+                            <Route path="/history-results" element={<LayoutHistory />}>
                                 <Route index element={<HistoryResults />} />
                             </Route>
-                            <Route path="/favorited" element={<Layout />}>
+                            <Route path="/favorite-results" element={<LayoutFavorited />}>
+                                <Route index element={<FavoriteResults />} />
+                            </Route>
+                            <Route path="/favorited" element={<LayoutFavorited />}>
                                 <Route index element={<Favorited />} />
                             </Route>
                             <Route path="/help" element={<Layout />}>

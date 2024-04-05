@@ -6,7 +6,7 @@ import { restructureApiResponse } from '../services/functions';
 import { useHistory } from '../services/providers/HistoryContext';
 
 
-export default function HistoryResults() {
+export default function FavoriteResults() {
 	const navigate = useNavigate(); // Initialize useNavigate hook
 	const token = Cookies.get('token')
 
@@ -16,15 +16,15 @@ export default function HistoryResults() {
 		}
 	})
 
-	const { historyData } = useHistory();
+	const { favoriteData } = useHistory();
 
-	const historyResults = restructureApiResponse(historyData)
-	console.log(historyResults)
+	const favoriteResults = restructureApiResponse(favoriteData)
+	console.log(favoriteResults)
 
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-row gap-4 w-full h-screen">
-				<RecentOrders data={historyResults} />
+				<RecentOrders data={favoriteResults} />
 			</div>
 		</div>
 	)

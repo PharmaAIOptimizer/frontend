@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from '../services/providers/HistoryContext';
-import { useSearch } from '../services/providers/SearchContext';
+import { useHistory } from '../../services/providers/HistoryContext';
+import { useSearch } from '../../services/providers/SearchContext';
+import Cookies from 'js-cookie';
+import { remove_favorites } from '../../services/api/history';
 
 export default function FavoritedTable({ data }) {
-	const { updateHistoryData } = useHistory();
+	const token = Cookies.get('token')
+	const { updateFavoriteData, updateFavoriteID } = useHistory();
 	const { updateSearchData } = useSearch();
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 15;
@@ -25,6 +28,21 @@ export default function FavoritedTable({ data }) {
 		pageNumbers.push(i);
 	}
 
+	async function handleDeleteResult(orderID) {
+		try {
+			const params = {
+				session_cookie: token,
+				history_id: orderID
+			};
+			await remove_favorites(params);
+			alert('Your saved result is now deleted');
+
+		} catch (error) {
+			console.error("Error fetching and processing history:", error);
+			// Handle the error appropriately, perhaps setting an error state
+		}
+	}
+
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Showing favorited searches</strong>
@@ -34,27 +52,35 @@ export default function FavoritedTable({ data }) {
 						<tr>
 							<th>ID</th>
 							<th>Drug Item Number</th>
-							<th>Multiple?</th>
 							<th>340B</th>
 							<th>GPO</th>
 							<th>WAC</th>
+							<th>Multiple?</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						{currentData.map((order, index) => (
 							<tr key={index}>
-								{updateHistoryData(order.results)}
+								{updateFavoriteData(order.results)}
 								{updateSearchData(order.itemNumber)}
+								{updateFavoriteID(order.id)}
 								<td>
-									<Link to={`/history-results`}>#</Link>
+									<Link to={`/favorite-results`}>#{order.id}</Link>
 								</td>
 								<td>
-									<Link to={`/history-results`}>{order.itemNumber}</Link>
+									<Link to={`/favorite-results`}>{order.itemNumber}</Link>
 								</td>
-								<td>{order.isMultiple}</td>
 								<td>{order.w3}</td>
 								<td>{order.w2}</td>
 								<td>{order.w1}</td>
+								<td>{order.isMultiple}</td>
+								<td>
+									<div className='font-bold text-red-800'>
+										{/* <button onClick={handleDeleteResult()}>Delete</button> */}
+										<button onClick={`#`}>Delete</button>
+									</div>
+								</td>
 							</tr>
 						))}
 					</tbody>
@@ -74,6 +100,6 @@ export default function FavoritedTable({ data }) {
 					))}
 				</ul>
 			</nav>
-		</div>
+		</div >
 	);
 }

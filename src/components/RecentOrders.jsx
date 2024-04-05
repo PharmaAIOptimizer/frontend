@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
 import { useSearch } from '../services/providers/SearchContext';
+import { useHistory } from '../services/providers/HistoryContext';
+import Cookies from 'js-cookie';
+import { add_favorites } from '../services/api/history';
 
 export default function RecentOrders({ data }) {
 	const { searchData } = useSearch();
+	const { favoriteID } = useHistory();
 	const [currentPage, setCurrentPage] = useState(1);
 	const resultsPerPage = 10;
+
+	const token = Cookies.get('token')
 
 	// Reverse the data array before calculating the slice for the current page
 	// const reversedData = [...data].reverse(); // Create a copy and reverse it to avoid mutating the original data prop
@@ -34,6 +40,21 @@ export default function RecentOrders({ data }) {
 		});
 		return acc;
 	}, new Set());
+
+	async function handleSaveResults() {
+		try {
+			const params = {
+				session_cookie: token,
+				history_id: favoriteID
+			};
+			await add_favorites(params);
+			alert('Your results have been saved');
+
+		} catch (error) {
+			console.error("Error fetching and processing history:", error);
+			// Handle the error appropriately, perhaps setting an error state
+		}
+	}
 
 	const headers = [
 		{ label: "Item Number", prop: "itemNumber" },
@@ -72,7 +93,7 @@ export default function RecentOrders({ data }) {
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Showing results for #{searchData}</strong>
 			<div className='text-right font-bold text-green-800'>
-				<button>Save results</button></div>
+				<button onClick={handleSaveResults}>Save results</button></div>
 
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="w-full text-gray-700">

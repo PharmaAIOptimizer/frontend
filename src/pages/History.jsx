@@ -17,6 +17,24 @@ export default function History() {
         }
     });
 
+    const historyResultsAPI = (apiResponse) => {
+        try {
+            return apiResponse.map(item => ({
+                id: item[0],
+                itemNumber: item[1],
+                w1: item[2],
+                w2: item[3],
+                w3: item[4],
+                isMultiple: item[5] ? 'Yes' : 'No',
+                timestamp: item[6],
+                results: item[7],
+            }));
+        } catch (error) {
+            console.error("An error occurred while processing the API response:", error);
+            return [];
+        }
+    };
+
     async function fetchAndProcessHistory() {
         try {
             const historyParams = { session_cookie: token };
@@ -28,23 +46,6 @@ export default function History() {
             // Handle the error appropriately, perhaps setting an error state
         }
     }
-
-    const historyResultsAPI = (apiResponse) => {
-        try {
-            return apiResponse.map(item => ({
-                itemNumber: item[0],
-                w1: item[1],
-                w2: item[2],
-                w3: item[3],
-                isMultiple: item[4] ? 'Yes' : 'No',
-                timestamp: item[5],
-                results: item[6]
-            }));
-        } catch (error) {
-            console.error("An error occurred while processing the API response:", error);
-            return [];
-        }
-    };
 
     return (
         <div className="flex flex-col gap-4">
