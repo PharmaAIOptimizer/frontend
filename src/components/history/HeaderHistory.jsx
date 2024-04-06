@@ -43,10 +43,10 @@ export default function HeaderHistory() {
 			w2: gpo,
 			w3: awp,
 		};
-		
+
 		let res;
 
-		if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3){
+		if (!drugParams.w1 || !drugParams.w2 || !drugParams.w3) {
 			console.log('NO INPUT')
 		} else {
 			console.log('YES INPUT')
@@ -218,20 +218,21 @@ export default function HeaderHistory() {
 										Your Profile
 									</div>
 								)}
-							</Menu.Item>
+										</Menu.Item> */}
 							<Menu.Item>
 								{({ active }) => (
 									<div
-										onClick={() => navigate('/settings')}
+										// onClick={() => navigate('#')}
+										onClick={() => alert('This feature is coming soon!')}
 										className={classNames(
 											active && 'bg-gray-100',
 											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
 										)}
 									>
-										Settings
+										Upload New CSV
 									</div>
 								)}
-							</Menu.Item> */}
+							</Menu.Item>
 							<Menu.Item>
 								{({ active }) => (
 									<div
