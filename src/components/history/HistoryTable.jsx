@@ -49,6 +49,7 @@ export default function HistoryTable({ data }) {
 							<th>WAC</th>
 							<th>Multiple?</th>
 							<th style={{ textAlign: 'center', verticalAlign: 'middle' }}>Total Replacements</th>
+							{/* <th style={{ textAlign: 'center', verticalAlign: 'middle' }}>Date</th> */}
 						</tr>
 					</thead>
 					<tbody>
@@ -64,7 +65,8 @@ export default function HistoryTable({ data }) {
 								<td>{order.w2}</td>
 								<td>{order.w1}</td>
 								<td>{order.isMultiple}</td>
-								<td style={{ textAlign: 'center', verticalAlign: 'middle' }}>{order.results.length}</td>
+								<td style={{ textAlign: 'center', verticalAlign: 'middle', fontWeight: 'bold' }}>{order.results.length}</td>
+								{/* <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>{order.timestamp}</td> */}
 							</tr>
 						))}
 					</tbody>
