@@ -1,6 +1,6 @@
 export const register_user = async (formData) => {
     try {
-        const res = await fetch('https://100.26.146.163/user/create', {
+        const res = await fetch('https://api.papoai.net/user/create', {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -17,7 +17,7 @@ export const register_user = async (formData) => {
 
 export const login_user = async (formData) => {
     try {
-        const res = await fetch('https://100.26.146.163/session/login', {
+        const res = await fetch('https://api.papoai.net/session/login', {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -34,7 +34,7 @@ export const login_user = async (formData) => {
 
 export const logout_user = async (formData) => {
     try {
-        const res = await fetch('https://100.26.146.163/session/logout', {
+        const res = await fetch('https://api.papoai.net/session/logout', {
             headers: {
                 'Content-Type': 'application/json',
             },
