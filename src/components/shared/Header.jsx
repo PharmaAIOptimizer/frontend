@@ -41,9 +41,9 @@ export default function Header() {
 			session_cookie: token,
 			drugid: searchTerm,
 			isMultiple: isMultiple ? 1 : 0,
-			w1: wac,
+			w1: awp, //340B
 			w2: gpo,
-			w3: awp,
+			w3: wac,
 		};
 
 		let res;
