@@ -1,3 +1,7 @@
+export function convertBase64(){
+    
+}
+
 export function formatJSON(jsonString) {
     try {
         const jsonArray = JSON.parse(jsonString);
