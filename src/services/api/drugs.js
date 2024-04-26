@@ -41,18 +41,6 @@ export const uploadCSV = async (file) => {
     }
 };
 
-async function uploadCSV(chunk, start, fileName) {
-    const formData = new FormData();
-    formData.append('file', chunk, fileName);
-
-    return fetch('https://api.papoai.net/snapshot/upload2', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData,
-    });
-}
-
-
 export const upload_csv = async (session_cookie, file) => {
     try {
         const res = await fetch('https://api.papoai.net/snapshot/upload', {
