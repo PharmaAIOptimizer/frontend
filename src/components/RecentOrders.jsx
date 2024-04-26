@@ -85,7 +85,7 @@ export default function RecentOrders({ data }) {
 		{ label: "Total_MG", prop: "totalMg" },
 		{ label: "Total_ML", prop: "totalMl" },
 		{ label: "Total_MM", prop: "totalMm" },
-		{ label: "Basic Form", prop: "basicForm" },
+		// { label: "Basic Form", prop: "basicForm" },
 		{ label: "Average Price", prop: "averagePrice" },
 	];
 
