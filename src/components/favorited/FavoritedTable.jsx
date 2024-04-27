@@ -28,20 +28,43 @@ export default function FavoritedTable({ data }) {
 		pageNumbers.push(i);
 	}
 
-	async function handleDeleteResult(orderID) {
-		try {
-			const params = {
-				session_cookie: token,
-				history_id: orderID
-			};
-			await remove_favorites(params);
-			alert('Your saved result is now deleted');
+	// async function handleDeleteResult(favoriteID) {
+	// 	try {
+	// 		const params = {
+	// 			session_cookie: token,
+	// 			history_id: favoriteID
+	// 		};
+	// 		await remove_favorites(params);
+	// 		alert('Your results have been saved');
 
-		} catch (error) {
-			console.error("Error fetching and processing history:", error);
-			// Handle the error appropriately, perhaps setting an error state
-		}
+	// 	} catch (error) {
+	// 		console.error("Error fetching and processing history:", error);
+	// 		// Handle the error appropriately, perhaps setting an error state
+	// 	}
+	// }
+
+	async function handleDeleteResult(favoriteID) {
+		// // Show a confirmation dialog before deleting
+		// const confirmDelete = window.confirm(`Are you sure you want to delete #${favoriteID}?`);
+		// if (!confirmDelete) {
+		// 	console.log('Deletion cancelled');
+		// 	return; // Exit the function if the user clicked "No"
+		// }
+	
+		// try {
+		// 	const params = {
+		// 		session_cookie: token, // Make sure 'token' is defined somewhere in your scope
+		// 		history_id: favoriteID
+		// 	};
+		// 	await remove_favorites(params);
+		// 	alert('Your results have been saved'); // You might want to change this message to 'Favorite has been deleted'
+		// } catch (error) {
+		// 	console.error("Error fetching and processing history:", error);
+		// 	// Handle the error appropriately, perhaps setting an error state
+		// }
+		alert('hi')
 	}
+	
 
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -77,8 +100,8 @@ export default function FavoritedTable({ data }) {
 								<td>{order.isMultiple}</td>
 								<td>
 									<div className='font-bold text-red-800'>
-										{/* <button onClick={handleDeleteResult()}>Delete</button> */}
-										<button onClick={`#`}>Delete</button>
+										<button onClick={handleDeleteResult(order.id)}>Delete</button>
+										{/* <button onClick={`#`}>Delete</button> */}
 									</div>
 								</td>
 							</tr>

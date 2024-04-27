@@ -24,3 +24,6 @@ yarn-error.log*
 
 # older files & templates
 _old/
+
+# env
+.env
