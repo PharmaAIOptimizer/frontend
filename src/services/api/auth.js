@@ -1,6 +1,8 @@
+const BASE = process.env.REACT_APP_BASE;
+
 export const create_user = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/user/create', {
+        const res = await fetch(`${BASE}/user/create`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -17,7 +19,7 @@ export const create_user = async (params) => {
 
 export const login_user = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/session/login', {
+        const res = await fetch(`${BASE}/session/login`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -34,7 +36,7 @@ export const login_user = async (params) => {
 
 export const logout_user = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/session/logout', {
+        const res = await fetch(`${BASE}/session/logout`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -56,7 +58,7 @@ export const logout_user = async (params) => {
 
 export const delete_user = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/user/delete', {
+        const res = await fetch(`${BASE}/user/delete`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -73,7 +75,7 @@ export const delete_user = async (params) => {
 
 export const validate_cookie = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/session/is_session_cookie_valid', {
+        const res = await fetch(`${BASE}/session/is_session_cookie_valid`, {
             headers: {
                 'Content-Type': 'application/json',
             },

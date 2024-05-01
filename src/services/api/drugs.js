@@ -1,6 +1,8 @@
+const BASE = process.env.REACT_APP_BASE;
+
 export const replace_drug = async (params) => {
     try {
-        const res = await fetch('https://api.papoai.net/drugs/replacements', {
+        const res = await fetch(`${BASE}/drugs/replacements`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -21,7 +23,7 @@ export const uploadCSV = async (file) => {
     formData.append('file', file); // Add the file to FormData under the key 'file'
 
     try {
-        const res = await fetch('https://api.papoai.net/snapshot/upload2', {
+        const res = await fetch(`${BASE}/snapshot/upload2`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json', // Explicitly accept JSON responses
@@ -43,7 +45,7 @@ export const uploadCSV = async (file) => {
 
 export const upload_csv = async (session_cookie, file) => {
     try {
-        const res = await fetch('https://api.papoai.net/snapshot/upload', {
+        const res = await fetch(`${BASE}/snapshot/upload`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -68,7 +70,7 @@ export const upload_csv = async (session_cookie, file) => {
 
 // export const upload_csv = async (params) => {
 //     try {
-//         const res = await fetch('https://api.papoai.net/snapshot/upload', {
+//         const res = await fetch(`${BASE}/snapshot/upload`, {
 //             headers: {
 //                 'Accept': 'application/json',
 //             },
