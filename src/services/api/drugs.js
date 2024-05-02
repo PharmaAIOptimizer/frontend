@@ -18,11 +18,12 @@ export const replace_drug = async (params) => {
     }
 };
 
-export const uploadCSV = async (file) => {
+export const upload2 = async (file) => {
     const formData = new FormData();
     formData.append('file', file); // Add the file to FormData under the key 'file'
 
     try {
+        console.log("will try uploading...")
         const res = await fetch(`${BASE}/snapshot/upload2`, {
             method: 'POST',
             headers: {
@@ -42,6 +43,8 @@ export const uploadCSV = async (file) => {
         return error.message;
     }
 };
+
+
 
 export const upload_csv = async (session_cookie, file) => {
     try {

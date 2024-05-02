@@ -4,7 +4,7 @@ import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import Cookies from 'js-cookie'
-import { replace_drug, uploadCSV, upload_csv } from '../../services/api/drugs'
+import { replace_drug, upload2, uploadCSV, upload_csv } from '../../services/api/drugs'
 import { useDrug } from '../../services/providers/DrugContext'
 import { useSearch } from '../../services/providers/SearchContext'
 
@@ -63,71 +63,6 @@ export default function Header() {
 	const handleCheckboxChange = () => {
 		setIsMultiple(!isMultiple);
 	};
-
-	const handleUploadCSV = (token) => {
-		alert('This feature is currently under maintenance 🛠️')
-	};
-
-	// const handleUploadCSV = (e) => {
-	// 	// Create an input element for file selection
-	// 	const input = document.createElement('input');
-	// 	input.type = 'file';
-	// 	input.accept = '.csv';
-	// 	console.log("here1")
-	// 	input.onchange = (e) => {
-	// 		const file = e.target.files[0];
-	// 		if (file) {
-	// 			const reader = new FileReader();
-	// 			console.log("here1.5")
-
-	// 			reader.readAsDataURL(file);  // Read the file as Data URL (Base64)
-	// 			reader.onload = () => {
-	// 				// Extract Base64 string from the result, removing metadata
-	// 				const fileBase64 = reader.result.replace('data:', '').replace(/^.+,/, '');
-	// 				console.log("here2")
-
-	// 				// Log the Base64 string
-	// 				console.log("file", fileBase64);
-	// 				upload_csv(token, fileBase64)
-	// 				console.log("here5Finished")
-	// 			};
-
-	// 			reader.onerror = (error) => {
-	// 				console.error('Error reading file:', error);
-	// 			};
-
-	// 		}
-	// 	};
-
-	// 	// Simulate a click on the input
-	// 	input.click();
-	// };
-
-
-	// const handleUploadCSV = async () => {
-	// 	// Create an input element for file selection
-	// 	const input = document.createElement('input');
-	// 	input.type = 'file';
-	// 	input.accept = '.csv'; // Only accept CSV files
-	
-	// 	input.onchange = async (e) => {
-	// 		const file = e.target.files[0];
-	// 		if (file) {
-	// 			// Here you might call a function to handle the upload process
-	// 			try {
-	// 				console.log('File uploaded PENDING');
-	// 				const response = await uploadCSV(file);
-	// 				console.log('File uploaded successfully', response);
-	// 			} catch (error) {
-	// 				console.error('Error uploading file:', error);
-	// 			}
-	// 		}
-	// 	};
-	
-	// 	// Simulate a click on the input
-	// 	input.click();
-	// };
-	
 
 	return (
 		<div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
@@ -290,7 +225,8 @@ export default function Header() {
 							<Menu.Item>
 								{({ active }) => (
 									<div
-										onClick={handleUploadCSV}
+										// onClick={handleUploadCSV}
+										onClick={() => navigate('/upload')}
 										className={classNames(
 											active && 'bg-gray-100',
 											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'

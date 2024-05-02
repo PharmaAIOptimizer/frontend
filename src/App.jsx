@@ -12,6 +12,7 @@ import { HistoryProvider } from './services/providers/HistoryContext'
 import LayoutHistory from './components/history/LayoutHistory'
 import LayoutFavorited from './components/favorited/LayoutFavorited'
 import FavoriteResults from './pages/FavoriteResults'
+import UploadImageToS3WithNativeSdk from './services/api/UploadImageToS3WithNativeSdk'
 
 function App() {
     return (
@@ -23,6 +24,9 @@ function App() {
                             <Route path="/" element={<Register />} />
                             <Route path="/home" element={<Layout />}>
                                 <Route index element={<Dashboard />} />
+                            </Route>
+                            <Route path="/upload" element={<Layout />}>
+                                <Route index element={<UploadImageToS3WithNativeSdk />} />
                             </Route>
                             <Route path="/history" element={<LayoutHistory />}>
                                 <Route index element={<History />} />
