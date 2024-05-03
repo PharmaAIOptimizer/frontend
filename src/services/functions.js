@@ -15,7 +15,7 @@ export function formatJSON(jsonString) {
         return formattedArray;
     } catch (error) {
         console.error('Error formatting JSON:', error);
-        return null;
+        return [];
     }
 }
 
