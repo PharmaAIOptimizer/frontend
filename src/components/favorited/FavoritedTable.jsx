@@ -10,6 +10,7 @@ export default function FavoritedTable({ data }) {
 	const { updateFavoriteData, updateFavoriteID } = useHistory();
 	const { updateSearchData } = useSearch();
 	const [currentPage, setCurrentPage] = useState(1);
+
 	const resultsPerPage = 15;
 
 	// data = [...data].reverse() // reversed to display most recent to oldest data
@@ -28,44 +29,28 @@ export default function FavoritedTable({ data }) {
 		pageNumbers.push(i);
 	}
 
-	// async function handleDeleteResult(favoriteID) {
-	// 	try {
-	// 		const params = {
-	// 			session_cookie: token,
-	// 			history_id: favoriteID
-	// 		};
-	// 		await remove_favorites(params);
-	// 		alert('Your results have been saved');
-
-	// 	} catch (error) {
-	// 		console.error("Error fetching and processing history:", error);
-	// 		// Handle the error appropriately, perhaps setting an error state
-	// 	}
-	// }
-
-	async function handleDeleteResult(favoriteID) {
-		// // Show a confirmation dialog before deleting
+	async function handleDeleteResult(props) {
+		// Show a confirmation dialog before deleting
 		// const confirmDelete = window.confirm(`Are you sure you want to delete #${favoriteID}?`);
-		// if (!confirmDelete) {
-		// 	console.log('Deletion cancelled');
-		// 	return; // Exit the function if the user clicked "No"
-		// }
+		const confirmDelete = window.confirm(`Are you sure you want to delete #${props}?`);
+		if (!confirmDelete) {
+			console.log('Deletion cancelled');
+			return; // Exit the function if the user clicked "No"
+		}
 	
-		// try {
-		// 	const params = {
-		// 		session_cookie: token, // Make sure 'token' is defined somewhere in your scope
-		// 		history_id: favoriteID
-		// 	};
-		// 	await remove_favorites(params);
-		// 	alert('Your results have been saved'); // You might want to change this message to 'Favorite has been deleted'
-		// } catch (error) {
-		// 	console.error("Error fetching and processing history:", error);
-		// 	// Handle the error appropriately, perhaps setting an error state
-		// }
-		alert('hi')
+		try {
+			const params = {
+				session_cookie: token, // Make sure 'token' is defined somewhere in your scope
+				history_id: props
+			};
+			await remove_favorites(params);
+			alert('Successfully deleted'); // You might want to change this message to 'Favorite has been deleted'
+		} catch (error) {
+			console.error("Error fetching and processing history:", error);
+			// Handle the error appropriately, perhaps setting an error state
+		}
 	}
 	
-
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Showing favorited searches</strong>
@@ -79,6 +64,7 @@ export default function FavoritedTable({ data }) {
 							<th>GPO</th>
 							<th>WAC</th>
 							<th>Multiple?</th>
+							<th style={{ textAlign: 'left', verticalAlign: 'middle' }}>Total Replacements</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
@@ -98,10 +84,10 @@ export default function FavoritedTable({ data }) {
 								<td>{order.w2}</td>
 								<td>{order.w1}</td>
 								<td>{order.isMultiple}</td>
+								<td style={{ textAlign: 'left', verticalAlign: 'middle' }}>{order.results.length}</td>
 								<td>
 									<div className='font-bold text-red-800'>
-										<button onClick={handleDeleteResult(order.id)}>Delete</button>
-										{/* <button onClick={`#`}>Delete</button> */}
+										<button onClick={() => handleDeleteResult(order.id)}>Delete</button>
 									</div>
 								</td>
 							</tr>
